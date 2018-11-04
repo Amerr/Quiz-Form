@@ -1,13 +1,14 @@
 import DS from 'ember-data';
-import { fragmentArray, fragment } from 'ember-data-model-fragments/attributes';
+import { fragmentArray } from 'ember-data-model-fragments/attributes';
 
 const {
+  attr,
   belongsTo,
   Model
 } = DS;
 
 export default Model.extend({
-  conditons: fragmentArray('fragment/condition'),
-  destination: fragment('fragment/destination'),
+  conditions: fragmentArray('fragment/condition'),
+  destination: attr(),
   question: belongsTo('question')
 });

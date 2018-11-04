@@ -1,5 +1,4 @@
-export default {
-  "questionnaire": {
+export default [{
     "id": 40,
     "identifier": "ewBzTS",
     "name": "Personal Liability Insurance",
@@ -492,5 +491,4 @@ export default {
     ],
     "description": "In order to create your personal personal liability insurance offer, we still need some information from you.",
     "category_name_hyphenated": "Pri\u0026shy;vat\u0026shy;haft\u0026shy;pflicht"
-  }
-}
+  }]

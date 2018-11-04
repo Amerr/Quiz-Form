@@ -1,3 +1,4 @@
 import { ActiveModelSerializer } from 'active-model-adapter';
 
-export default ActiveModelSerializer.extend();
+export default ActiveModelSerializer.extend({
+});
