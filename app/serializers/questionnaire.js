@@ -6,6 +6,6 @@ export default ApplicationSerializer.extend(DS.EmbeddedRecordsMixin, {
     questions: {
       embedded: 'always'
     },
-    category: 'categoryNameHyphenated'
+    category: 'category_name_hyphenated'
   }
 });

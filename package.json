@@ -35,6 +35,7 @@
     "ember-data-model-fragments": "2.14.0",
     "ember-export-application-global": "^2.0.0",
     "ember-load-initializers": "^1.0.0",
+    "ember-radio-button": "^1.2.4",
     "ember-resolver": "^4.0.0",
     "ember-source": "~2.13.3",
     "loader.js": "^4.2.3"

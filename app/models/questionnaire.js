@@ -12,6 +12,7 @@ export default Model.extend({
   questions: hasMany('question', {
     async: false
   }),
+  answerSheets: hasMany('answer-sheet'),
   description: attr('string'),
-  categoryNameHyphenated: attr('string')
+  category: attr('string')
 });

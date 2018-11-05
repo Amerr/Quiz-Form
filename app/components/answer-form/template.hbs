@@ -1,0 +1,15 @@
+<h3>{{model.name}}</h3>
+<div>
+  Total Answered Questions {{answeredQuestions.length}}/{{questions.length}}
+</div>
+<div>
+  <h4>{{currentIndex}}</h4>
+  <div>
+    {{#question-item model=currentQuestion value=currentAnswer.value onSubmit=(action 'onSubmit') onCancel=(action 'onCancel') as |question|}}
+      {{question.title}}
+      {{question.answer-box}}
+      {{question.submit}}
+      {{question.cancel}}
+    {{/question-item}}
+  </div>
+</div>

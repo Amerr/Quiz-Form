@@ -1,1 +1,10 @@
 <h1>Questionnaire Dashboard</h1>
+<div>
+  {{#each questionnaires as |questionnaire|}}
+    {{questionnaire-set model=questionnaire navigateToQuiz=(action 'navigateToQuiz' questionnaire)}}
+  {{else}}
+    <div>
+      No Questionnaire to attend
+    </div>
+  {{/each}}
+</div>

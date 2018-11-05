@@ -8,7 +8,9 @@ const {
 } = DS;
 
 export default Model.extend({
-  conditions: fragmentArray('fragment/condition'),
+  conditions: fragmentArray('fragment/condition', {
+    defaultValue: () => []
+  }),
   destination: attr(),
   question: belongsTo('question')
 });

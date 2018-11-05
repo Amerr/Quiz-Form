@@ -152,7 +152,7 @@ export default [{
         "headline": "Gehört Dir eine selbstbewohnte Immobilie?",
         "description": null,
         "required": false,
-        "multiple": "false",
+        "multiple": "true",
         "choices": [
           {
             "label": "Ja, im Inland",

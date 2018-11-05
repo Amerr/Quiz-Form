@@ -1,0 +1,8 @@
+{{#each choices as |choice idx|}}
+  {{#radio-button
+      value=choice.value
+      groupValue=value
+      changed=(action "onSelect" choice)}}
+      <span>{{choice.label}}</span>
+  {{/radio-button}}
+{{/each}}
