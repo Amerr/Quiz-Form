@@ -1,15 +1,27 @@
-<h3>{{model.name}}</h3>
-<div>
-  Total Answered Questions {{answeredQuestions.length}}/{{questions.length}}
+<span class="loader" style="width: {{loaderWidth}}%"></span>
+<div class="questionnaire-meta">
+  <h3 class="questionnaire-meta-title">{{model.name}}</h3>
+  <span class="questionnaire-meta-stats">Total Answered Questions {{answeredQuestions.length}}/{{questions.length}}</span>
 </div>
-<div>
-  <h4>{{currentIndex}}</h4>
-  <div>
-    {{#question-item model=currentQuestion value=currentAnswer.value onSubmit=(action 'onSubmit') onCancel=(action 'onCancel') as |question|}}
-      {{question.title}}
-      {{question.answer-box}}
-      {{question.submit}}
-      {{question.cancel}}
-    {{/question-item}}
-  </div>
+
+<h4 class="current-question-index">{{currentIndex}}</h4>
+<div class="answer-container">
+  {{#question-item class='question-wrapper' model=currentQuestion value=currentAnswer.value onSubmit=(action 'onSubmit') onCancel=(action 'onCancel') as |question|}}
+    <div class="scene">
+      <div class="carousel" style="transform: translateZ(-300px) rotateY({{clockWiseRotation}}deg)">
+        <div class="carousel-cell">
+          {{question.title}}
+          {{question.answer-box}}
+        </div>
+        <div class="carousel-cell">
+          {{question.title}}
+          {{question.answer-box}}
+        </div>
+      </div>
+    </div>
+    <div class="question-footer">
+      {{question.cancel title='Prev'}}
+      {{question.submit title='Next'}}
+    </div>
+  {{/question-item}}
 </div>

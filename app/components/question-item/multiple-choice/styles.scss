@@ -1,0 +1,55 @@
+& {
+  label {
+    display: block;
+
+    input {
+      display: none;
+
+      &[type='checkbox'] {
+        &:not(:checked) {
+          + span::after {
+            opacity: 0;
+          }
+        }
+  
+        &:checked {
+          + span::after {
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    span {
+      display: block;
+      position: relative;
+      padding-left: 30px;
+      cursor: pointer;
+
+      &::before, &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: block;
+        box-sizing: content-box;
+      }
+  
+      &::before {
+        width: 18px;
+        height: 18px;
+        border: 1px solid $white;
+        background: $white;
+      }
+  
+      &::after {
+        width: 12px;
+        height: 12px;
+        top: 4px;
+        left: 4px;
+        background: $input-selected-color;
+        transition: all 0.3s ease;
+      }
+    }
+  }
+}
