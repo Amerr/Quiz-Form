@@ -1,8 +1,6 @@
 {{#each checkBoxchoices as |choice|}}
-  <div>
-    <label for={{choice.id}}>
-      <input type="checkbox" name={{model.id}} id={{choice.id}} checked={{choice.isChecked}} {{action 'onSelect' choice on="change"}} >
-      {{choice.label}}
-    </label>
-  </div>
+  <label for={{choice.id}}>
+    <input type="checkbox" name={{model.id}} id={{choice.id}} checked={{choice.isChecked}} {{action 'onSelect' choice on="change"}} >
+    <span>{{choice.label}}</span>
+  </label>
 {{/each}}
