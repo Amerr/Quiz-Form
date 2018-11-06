@@ -13,11 +13,20 @@ const {
 export default Ember.Component.extend({
   store: service(),
   nextQuestion: null,
+  transistionClass: null,
+  antiClockWiseRotation: 0,
+  clockWiseRotation: 0,
   
   questions: alias('model.questions'),
   totalAnswers: alias('answerSheet.answers.length'),
   currentIndex: alias('currentAnswer.order'),
   
+  loaderWidth: computed('currentIndex', {
+    get() {
+      return get(this, 'currentIndex') / get(this, 'questions.length') * 100;
+    }
+  }),
+
   questionList: computed('questions', {
     get() {
       return get(this, 'questions').toArray();
@@ -88,8 +97,26 @@ export default Ember.Component.extend({
     return nextQuestion;
   },
 
+  animateSlide(progress = true) {
+    let { clockWiseRotation, antiClockWiseRotation } = this.getProperties('clockWiseRotation', 'antiClockWiseRotation');
+    
+    if (progress) {
+      clockWiseRotation = clockWiseRotation - 180;
+      antiClockWiseRotation = antiClockWiseRotation + 180;
+    } else {
+      clockWiseRotation = clockWiseRotation + 180;
+      antiClockWiseRotation = antiClockWiseRotation - 180;
+    }
+    
+    this.setProperties({
+      clockWiseRotation,
+      antiClockWiseRotation
+    });
+  },
+
   actions: {
     onSubmit(value) {
+      this.animateSlide();
       let currentQuestion = get(this, 'currentQuestion');
       let questionList = get(this, 'questionList');
       let currentAnswer = get(this, 'currentAnswer');
@@ -109,12 +136,12 @@ export default Ember.Component.extend({
           console.log('Send Result');
         }
       }
-
     },
     onCancel() {
       let answers = get(this, 'answerSheet.answers');
       let currentQuestionOrder = get(this, 'currentIndex');
-      if (get(answers, 'length') && currentQuestionOrder !== 0) {
+      if (get(answers, 'length') && currentQuestionOrder !== 1) {
+        this.animateSlide(false);
         let answer = answers.findBy('order', currentQuestionOrder - 1);
         set(this, 'nextQuestion', get(answer, 'questionId'));
       }
