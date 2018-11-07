@@ -10,6 +10,9 @@ Router.map(function() {
   this.route('dashboard', {
     path: '/'
   });
+  this.route('quiz', {
+    path: 'quiz/:id'
+  })
 });
 
 export default Router;

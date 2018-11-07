@@ -14,4 +14,8 @@ export default function() {
   this.get('/questionnaires', (schema) => {
     return schema.questionnaires.all();
   });
+
+  this.get('/questionnaires/:id', (schema, request) => {
+    return schema.questionnaires.find(request.params.id);
+  });
 }

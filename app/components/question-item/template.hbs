@@ -1,0 +1,6 @@
+{{yield (hash
+  title=(component 'question-item/title' model=model.headline isRequired=isRequired)
+  answer-box=(component componentType model=model value=value)
+  submit=(component 'question-item/submit' onSubmit=(action onSubmit value))
+  cancel=(component 'question-item/cancel' onCancel=onCancel)
+)}}

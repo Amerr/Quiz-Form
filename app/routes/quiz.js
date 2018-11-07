@@ -9,7 +9,7 @@ const {
 
 export default Ember.Route.extend({
   store: service(),
-  model() {
-    return get(this, 'store').findAll('questionnaire');
+  model(params) {
+    return get(this, 'store').findRecord('questionnaire', params.id);
   }
 });
