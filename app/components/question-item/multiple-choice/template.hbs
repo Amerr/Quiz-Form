@@ -1,5 +1,5 @@
 {{#each checkBoxchoices as |choice|}}
-  <label for={{choice.id}}>
+  <label for={{choice.id}} data-test-multiple-choice-item={{idx}}>
     <input type="checkbox" name={{model.id}} id={{choice.id}} checked={{choice.isChecked}} {{action 'onSelect' choice on="change"}} >
     <span>{{choice.label}}</span>
   </label>

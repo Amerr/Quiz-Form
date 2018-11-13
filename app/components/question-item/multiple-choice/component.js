@@ -8,7 +8,9 @@ const {
   set
 } = Ember;
 
+
 export default QuestionItem.extend({
+  attributeBindings: ['model.id:data-test-multiple-choice'],
   checkBoxchoices: computed('choices', 'value', {
     get() {
       let value = get(this, 'value');

@@ -1,5 +1,5 @@
 {{#each choices as |choice idx|}}
-  <div>
+  <div data-test-single-choice-item={{idx}}>
     {{#radio-button
         value=choice.value
         groupValue=value

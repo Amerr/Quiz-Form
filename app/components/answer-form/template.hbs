@@ -1,26 +1,28 @@
 <span class="loader" style="width: {{loaderWidth}}%"></span>
 <div class="questionnaire-meta">
-  <h3 class="questionnaire-meta-title">{{model.name}}</h3>
-  <span class="questionnaire-meta-stats">Total Answered Questions {{answeredQuestions.length}}/{{questions.length}}</span>
+  <h3 class="questionnaire-meta-title" data-test-questionnaire-title>{{model.name}}</h3>
+  <span class="questionnaire-meta-stats" data-test-questionnaire-stats>
+    Total Answered Questions <span>{{answeredQuestions.length}}/{{questions.length}}</span>
+  </span>
 </div>
 
-<h4 class="current-question-index">{{currentIndex}}</h4>
+<h4 class="current-question-index" data-test-current-index>{{currentIndex}}</h4>
 <div class="answer-container">
   {{#question-item class='question-wrapper' model=currentQuestion value=currentAnswer.value onSubmit=(action 'onSubmit') onCancel=(action 'onCancel') as |question|}}
     <div class="scene">
-      <div class="carousel" style="transform: translateZ(-300px) rotateY({{clockWiseRotation}}deg)">
+      <div class="carousel" style="transform: translateZ(-300px) rotateY({{clockWiseRotation}}deg)" data-test-answer-container>
         <div class="carousel-cell">
-          {{question.title}}
+          {{question.title data-test-question-title=''}}
           {{question.answer-box}}
         </div>
         <div class="carousel-cell">
-          {{question.title}}
+          {{question.title data-test-question-title=''}}
           {{question.answer-box}}
         </div>
       </div>
     </div>
     <div class="question-footer">
-      {{question.cancel title='Prev'}}
+      {{question.cancel disabled=disablePrevButton title='Prev'}}
       {{question.submit title='Next'}}
     </div>
   {{/question-item}}

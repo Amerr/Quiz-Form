@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 const {
-  computed: { alias },
+  computed: { alias, equal },
   computed,
   inject: { service },
   isEmpty,
@@ -20,6 +20,7 @@ export default Ember.Component.extend({
   questions: alias('model.questions'),
   totalAnswers: alias('answerSheet.answers.length'),
   currentIndex: alias('currentAnswer.order'),
+  disablePrevButton: equal('currentIndex', 1),
   
   loaderWidth: computed('currentIndex', {
     get() {
@@ -68,9 +69,7 @@ export default Ember.Component.extend({
           order: get(answerList, 'length')+1,
           questionId
         });
-        Ember.run.next(() => {
-          answerList.pushObject(answer);
-        });
+        answerList.pushObject(answer);
       }
       return answer;
     }
