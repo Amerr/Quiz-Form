@@ -1,6 +1,6 @@
-<h4>{{model.name}}</h4>
-<p>{{model.description}}</p>
-<div>{{{model.category}}}</div>
+<h4 data-test-question-name>{{model.name}}</h4>
+<p data-test-question-description>{{model.description}}</p>
+<div data-test-question-category>{{{model.category}}}</div>
 <div class="footer">
-  <a class="btn btn-primary" {{action 'takeQuiz'}}>Take Quiz</a>  
+  <a class="btn btn-primary" data-test-question-trigger-action {{action 'takeQuiz'}}>Take Quiz</a>  
 </div>

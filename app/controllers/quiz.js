@@ -16,5 +16,10 @@ export default Ember.Controller.extend({
         questionnaire: model
       });
     }
-  })
+  }),
+  actions: {
+    onSubmit() {
+      this.transitionToRoute('dashboard');
+    }
+  }
 });

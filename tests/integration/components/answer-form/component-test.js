@@ -21,6 +21,8 @@ const page = {
   multipleChoice: '[data-test-multiple-choice]',
 };
 
+const content = (selector, context) => context.$(selector).text().trim();
+
 moduleForComponent('answer-form', 'Integration | Component | answer form', {
   integration: true,
   beforeEach() {
@@ -43,37 +45,35 @@ moduleForComponent('answer-form', 'Integration | Component | answer form', {
 
 test('it renders answer form inital state', function(assert) {
   let model = get(this, 'model');
-  let content = (selector) => this.$(selector).text().trim();
+  
   this.render(hbs`{{answer-form model=model answerSheet=answerSheet}}`);
-  assert.equal(content(page.questionnaireTitle), get(model, 'name'), 'It has rendered the questionnair name');
-  let stats = content(`${page.questionnaireStats} span`);
+  assert.equal(content(page.questionnaireTitle, this), get(model, 'name'), 'It has rendered the questionnair name');
+  let stats = content(`${page.questionnaireStats} span`, this);
   assert.equal(stats.split('/')[0], 0, 'It has rendered total answered question in inital state');
   assert.equal(stats.split('/')[1], get(model, 'questions.length'), 'It has rendered total question needs to be answered');
-  assert.equal(content(page.currentIndex), 1, 'it has rendered the current question index 1');
+  assert.equal(content(page.currentIndex, this), 1, 'it has rendered the current question index 1');
 });
 
 
 test('it navigates between multiple questions', async function (assert) {
-  let content = (selector) => this.$(selector).text().trim();
   await this.render(hbs`{{answer-form model=model answerSheet=answerSheet}}`);
   assert.equal(document.querySelector(page.prev).disabled , true, 'it has has disabled the prev button');
   await click(page.next);
-  assert.equal(content(page.currentIndex), 2, 'it has has rendered the next question');
+  assert.equal(content(page.currentIndex, this), 2, 'it has has rendered the next question');
   assert.equal(document.querySelector(page.prev).disabled , false, 'it has has enabled the prev button');
   await click(page.next);
-  assert.equal(content(page.currentIndex), 3, 'it has has rendered the next question');
+  assert.equal(content(page.currentIndex, this), 3, 'it has has rendered the next question');
   await click(page.prev);
-  assert.equal(content(page.currentIndex), 2, 'it has has rendered the prev question');
+  assert.equal(content(page.currentIndex, this), 2, 'it has has rendered the prev question');
 });
 
 test('it has updated the number of question answered', async function(assert) {
-  let content = (selector) => this.$(selector).text().trim();
   await this.render(hbs`{{answer-form model=model answerSheet=answerSheet}}`);
   let questionBox = document.querySelector(`${page.questionTitle} + div`);
   if (questionBox.attributes[page.singleChoice.replace(/[\[\]]+/g,'')]) {
     await click(`${page.singleChoiceItem(1)} input`);
     await click(page.next);
-    let stats = content(`${page.questionnaireStats} span`);
+    let stats = content(`${page.questionnaireStats} span`, this);
     assert.equal(stats.split('/')[0], 1, 'It has updated total answered question');
   }
 });

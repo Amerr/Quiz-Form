@@ -132,7 +132,9 @@ export default Ember.Component.extend({
           set(currentAnswer, 'nextQuestion', nextQuestionId);
           set(this, 'nextQuestion', nextQuestionId);
         } else {
-          console.log('Send Result');
+          get(this, 'answerSheet').save().then(() => {
+            this.onSubmit();
+          });
         }
       }
     },
